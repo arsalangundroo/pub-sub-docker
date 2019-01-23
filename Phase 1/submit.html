@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  </head>
+<br>
+
+<textarea rows=3 cols=50 id ="clickaction" name="clickaction" method="post" form="f1">Enter code to submit to backend.</textarea>  
+<input type="submit" class="submit-button" name="submit" id="submit" value="SUBMIT">
+<input type="reset" value="RESET">
+<div>Output:</div><br>
+<div id ="output"></div>
+
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+
+<script type="text/javascript"> 
+
+$('.submit-button').off('click').on('click', function(e){
+  var clickaction = {"py_code":$("#clickaction").val()};
+  console.log('djsdjd');
+  $.ajax({
+                type: 'POST',
+                data: clickaction,
+                //contentType: 'application/json',
+                url: 'http://localhost:3000/',
+                dataType: 'json',
+                complete: function (data) {
+                  $('#output').html(data.responseText);
+            }
+        })
+});
+
+// function backend()
+// {
+//   var clickaction = "";
+//   var submit = function() {
+//           console.log("submit");
+//           scriptcall(clickaction);
+
+//           var clickaction = $("#clickaction").val();
+//           scriptcall(clickaction);
+//   }
+// }
+
+// function scriptcall(clickaction)
+// {
+//   $.ajax({
+//                 type: 'POST',
+//                 data: JSON.stringify(clickaction),
+//                 contentType: 'application/json',
+//                 url: 'http://localhost:3000/endpoint',
+//                 dataType: 'json',
+//                 success: function (data) {
+//                   print (data);
+
+        
+//             }
+//         })
+// }
+
+
+
+</script>
+
+
+</body>
+</html>
